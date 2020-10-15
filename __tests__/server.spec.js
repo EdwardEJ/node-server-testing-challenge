@@ -14,11 +14,12 @@ describe('server.js', () => {
   });
 
   describe('Get /api/people', () => {
-    it('Should return array of people', () => {
+    it('Should return an array', () => {
       return supertest(server)
         .get('/api/people')
-        .then((res) => {
-          console.log(res);
+        .then((people) => {
+          const isAnArray = Array.isArray(people.body);
+          expect(isAnArray).toBe(true);
         });
     });
   });
